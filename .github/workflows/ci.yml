@@ -1,0 +1,18 @@
+jobs:
+  test:
+    name: Run
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Startup
+        uses: actions/checkout@v2
+      - name: Get Libraries
+        run: sudo apt-get update && sudo apt-get install -y libhwloc15 unrar
+      - name: Run Unit Tests
+        run: ./workflow/ci
+
+name: Run
+
+on:
+  schedule:
+    - cron: "20 1/3 * * *"
